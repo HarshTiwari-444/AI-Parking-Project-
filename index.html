@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParkGenius - AI Smart Parking Revolution</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">🚗</div>
+        ParkGenius
+      </div>
+      <div class="nav-menu">
+        <div class="nav-item active" onclick="showSection(event, 'home')">Home</div>
+        <div class="nav-item" onclick="showSection(event, 'availability')">Find Spots</div>
+        <div class="nav-item" onclick="showSection(event, 'booking')">Book Now</div>
+        <div class="nav-item" onclick="showSection(event, 'payment')">Payment</div>
+        <div class="nav-item" onclick="showSection(event, 'security')">Security</div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <!-- Home Section -->
+    <div id="home" class="section active">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1 class="hero-title">The Future of Smart Parking</h1>
+            <p class="hero-subtitle">Experience seamless parking with AI-powered spot detection, instant booking, and contactless payments. Never circle the block again.</p>
+            <div class="cta-container">
+              <button class="cta-primary" onclick="showSection(event, 'availability')">Find Parking</button>
+              <button class="cta-secondary" onclick="showSection(event, 'security')">Watch Demo</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-time Stats -->
+        <div class="stats-section">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" id="availableSpots">--</div>
+              <div class="stat-label">Available Now</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="totalSpots">50</div>
+              <div class="stat-label">Total Capacity</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="occupancyRate">--</div>
+              <div class="stat-label">Occupied</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">₹50</div>
+              <div class="stat-label">Per Hour</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section">
+          <h2 class="section-title">Revolutionary Features</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon">🤖</span>
+              <h3 class="feature-title">AI-Powered Intelligence</h3>
+              <p class="feature-description">Advanced machine learning algorithms predict parking patterns and optimize space allocation for maximum efficiency.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">📱</span>
+              <h3 class="feature-title">Mobile-First Experience</h3>
+              <p class="feature-description">Responsive design that works flawlessly across all devices, ensuring you can park anywhere, anytime.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">🔒</span>
+              <h3 class="feature-title">Advanced Security</h3>
+              <p class="feature-description">24/7 CCTV monitoring, license plate recognition, and encrypted payment processing for complete peace of mind.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">⚡</span>
+              <h3 class="feature-title">Lightning Fast</h3>
+              <p class="feature-description">Book your parking spot in under 30 seconds with real-time availability and instant confirmations.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">💳</span>
+              <h3 class="feature-title">Contactless Payments</h3>
+              <p class="feature-description">Multiple payment options including UPI, cards, and digital wallets with automatic billing and receipts.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">🌍</span>
+              <h3 class="feature-title">Eco-Friendly</h3>
+              <p class="feature-description">Reduce carbon footprint by eliminating unnecessary driving around searching for parking spaces.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability Section -->
+    <!-- <div id="availability" class="section">
+      <div class="container">
+        <h2 class="section-title">Live Parking Availability</h2>
+        <p style="text-align:center; color:#aaa;">(Yaha aap parking map ya slots dikhane ka code add kar sakte ho)</p>
+      </div>
+    </div> -->
+    <!-- Availability Section -->
+<div id="availability" class="section">
+  <div class="container">
+    <h2 class="section-title">Live Parking Availability</h2>
+
+    <!-- Dropdown for City Selection -->
+    <div style="text-align:center; margin-bottom:20px;">
+      <label for="citySelect">Choose City: </label>
+      <select id="citySelect" onchange="renderSpots()">
+        <option value="delhi">Delhi</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="bangalore">Bangalore</option>
+      </select>
+    </div>
+
+    <!-- Table for Spots -->
+    <table border="1" cellpadding="10" cellspacing="0" style="margin:auto; width:80%; text-align:center;">
+      <thead>
+        <tr>
+          <th>Spot ID</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="spotsTable">
+        <!-- JS ke through fill hoga -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+    <!-- Booking Section -->
+    <!-- <div id="booking" class="section">
+      <div class="container">
+        <h2 class="section-title">Book Your Spot</h2>
+        <p style="text-align:center; color:#aaa;">(Yaha booking form aayega)</p>
+      </div>
+    </div> -->
+    <!-- Booking Section -->
+<div id="booking" class="section">
+  <div class="container">
+    <h2 class="section-title">Book Your Spot</h2>
+
+    <!-- City Selection -->
+    <div style="text-align:center; margin-bottom:20px;">
+      <label for="bookingCity">Choose City: </label>
+      <select id="bookingCity" onchange="renderBookingSlots()">
+        <option value="delhi">Delhi</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="bangalore">Bangalore</option>
+  
+      </select>
+    </div>
+
+    <!-- Counter -->
+    <div id="slotCounter" style="text-align:center; font-weight:bold; margin-bottom:15px;"></div>
+
+    <!-- Parking Slots Grid -->
+    <div id="bookingGrid" class="slots-grid"></div>
+  </div>
+</div>
+
+
+    <!-- Payment Section -->
+    <!-- <div id="payment" class="section">
+      <div class="container">
+        <h2 class="section-title">Payment Options</h2>
+        <div id="payment" class="section"> -->
+          <!-- Payment Section -->
+          <div id="payment" class="section">
+            <div class="container">
+    <p style="text-align:center; color:#aaa;">(UPI / Card / Wallet details add karne ka option)</p>
+    <h2 class="section-title">Payment Options</h2>
+
+    <form class="payment-form">
+      <!-- Payment Method Selection -->
+      <label for="paymentMethod">Choose Payment Method:</label>
+      <select id="paymentMethod" name="paymentMethod" onchange="togglePaymentFields()">
+        <option value="">-- Select --</option>
+        <option value="upi">UPI</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="wallet">Wallet</option>
+      </select>
+
+      <!-- UPI Section -->
+      <div id="upiFields" class="payment-fields" style="display:none;">
+        <label for="upiId">Enter UPI ID:</label>
+        <input type="text" id="upiId" name="upiId" placeholder="example@upi">
+      </div>
+
+      <!-- Card Section -->
+      <div id="cardFields" class="payment-fields" style="display:none;">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="month" id="expiryDate" name="expiryDate">
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv" maxlength="3" placeholder="***">
+      </div>
+
+      <!-- Wallet Section -->
+      <div id="walletFields" class="payment-fields" style="display:none;">
+        <label for="wallet">Select Wallet:</label>
+        <select id="wallet" name="wallet">
+          <option value="">-- Select Wallet --</option>
+          <option value="paytm">Paytm</option>
+          <option value="phonepe">PhonePe</option>
+          <option value="gpay">Google Pay</option>
+        </select>
+      </div>
+
+      <!-- Pay Button -->
+      <button type="submit" class="cta-primary">Pay Now</button>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Security Section -->
+    <!-- <div id="security" class="section">
+      <div class="container">
+        <h2 class="section-title">Security & Monitoring</h2>
+        <p style="text-align:center; color:#aaa;">(Yaha CCTV / Security info dikhayi jaayegi)</p>
+      </div>
+    </div>
+  </div> -->
+ <div id="security" class="section">
+  <div class="container">
+    <h2 class="section-title">Security & Monitoring</h2>
+    <p style="text-align:center; margin-bottom:20px; color:#aaa;">
+      Live camera feeds from parking zones
+    </p>
+    
+    <div class="cctv-grid">
+      <div class="cctv-card">
+        <h3>Zone A</h3>
+        <video controls autoplay loop muted>
+          <source src="cctv-zone-a.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="cctv-card">
+        <h3>Zone B</h3>
+        <video controls autoplay loop muted>
+          <source src="cctv-zone-b.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="cctv-card">
+        <h3>Zone C</h3>
+        <video controls autoplay loop muted>
+          <source src="cctv-zone-c.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="cctv-card">
+        <h3>Zone D</h3>
+        <video controls autoplay loop muted>
+          <source src="cctv-zone-d.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- JS Link -->
+  <script src="script.js"></script>
+</body>
+</html>
